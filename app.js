@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 // Routes
 app.post('/auth', validateToken)
 
-app.get('/login', (req, res) => {
+app.get('/login', (res) => {
     res.sendFile(join(process.cwd(), "googleSignIn.html"));
   })
   
