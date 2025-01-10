@@ -19,6 +19,7 @@ const verifyJWT = (req,res,next) => {
         jwt.verify(JWT, ACCESS_SECRET)
         return res.status(200).json({message: "Login Successful."})
     } catch (err) {
+        // If error, redirect user to /login to sign in again and generate new JWT
         console.error(err)
         return res.status(401).json({ error: "UNAUTHORIZED", description: "JWT malformed." })
     }
