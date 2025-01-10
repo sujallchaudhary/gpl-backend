@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Google Sign-In</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="module">
+    // Import Firebase SDKs for App and Auth
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
+    import { getAuth, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
+
+    // Replace with your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDzooQMsK80Qo9Tf5W0eL9MrKJSYLJE0qw",
+      authDomain: "gdsc-gpl.firebaseapp.com",
+      projectId: "gdsc-gpl",
+      appId: "1:958220819012:web:2ce51faae1905c9c123a11",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Google sign-in function
+    window.signInWithGoogle = function () {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const token = result.user.accessToken;
+
+          // save the JWT from the response headers in cookies!!
+          axios.post('/auth', {idToken: token})
+
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          console.error("Error signing in with Google:", error);
+        });
+    };
+  </script>
+</head>
+
+<body>
+  <button onclick="signInWithGoogle()">Sign in with Google</button>
+</body>
+
+</html>
