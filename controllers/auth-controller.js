@@ -27,7 +27,6 @@ export const validateToken = async (req, res) => {
         const JWT = jwt.sign( jwtPayload, ACCESS_SECRET, { expiresIn: ACCESS_EXPIRESIN })
 
         res.set({Authorization: `Bearer ${JWT}`})
-        console.log(JWT)
         return res.status(200).json({ message: "Login successful." })
     } catch (err) {
         console.error("Something went wrong in /auth", err)

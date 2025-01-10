@@ -13,9 +13,9 @@ app.use(express.urlencoded({ extended: true }))
 // Routes
 app.post('/auth', validateToken)
 
-app.get('/login', (res) => {
-    res.sendFile(join(process.cwd(), "googleSignIn.html"));
-  })
+app.get('/login', (req, res) => {
+    res.sendFile(join(process.cwd(), "googleSignIn.html"))
+})
   
 
 app.listen(PORT, HOST, () => {
