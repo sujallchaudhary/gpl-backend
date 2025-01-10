@@ -1,5 +1,5 @@
 import express from "express";
-import {join} from "path";
+import { join } from "path";
 import { validateToken } from './controllers/auth-controller.js';
 import verifyJWT from "./middlewares/verify-jwt-middleware.js";
 import dotenv from "dotenv";
@@ -16,9 +16,9 @@ app.post('/auth', validateToken)
 app.get('/', verifyJWT)
 
 app.get('/login', (req, res) => {
-    res.sendFile(join(process.cwd(), "googleSignIn.html"))
+  res.sendFile(join(process.cwd(), "googleSignIn.html"))
 })
 
 app.listen(PORT, HOST, () => {
-    console.log(`Server is running on ${HOST}:${PORT}`)
+  console.log(`Server is running on ${HOST}:${PORT}`)
 })
