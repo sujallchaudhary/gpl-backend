@@ -21,11 +21,10 @@ export const validateToken = async (req, res) => {
         const decodedToken = await admin.auth().verifyIdToken(idToken)
         const { email: email_id, name: user_name, picture: profile, } = decodedToken
 
-         // Add MondoDB query here
+         // Add MondoDB query here (create user if not exist)
 
         const jwtPayload = { email_id, user_name, profile }
         const JWT = jwt.sign( jwtPayload, ACCESS_SECRET, { expiresIn: ACCESS_EXPIRESIN })
-
         res.set({Authorization: `Bearer ${JWT}`})
         return res.status(200).json({ message: "Login successful." })
     } catch (err) {
