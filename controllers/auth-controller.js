@@ -1,5 +1,5 @@
 import admin from 'firebase-admin';
-import serviceAccount from '../configuration/serviceAccountKey.json' with { type: 'json' };
+import serviceAccount from '../config/serviceAccountKey.json' with { type: 'json' };
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
